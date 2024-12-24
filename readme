@@ -32,6 +32,10 @@ The project includes GET/POST EPs for Lease, Property, Unit, Tenant as the basic
    python app.py
    ```
 4. The API will be available at `http://127.0.0.1:5000`.
+5. API tests are available with:
+    ```bash
+    pytest test_app.py
+    ```
 
 ## Input/Output Examples
 
