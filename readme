@@ -98,4 +98,4 @@ No parameters required.
 - Add error handling support for identifying possible http errors.
 - Understand if we will use structized schema data (as we do now) or do we expect more randomized data (as real businesses have) and if so transition to the non-relational db such as Mongo for example.
 - Adding PUT/DELETE options for the various EPs.
-
+- Add a robust testing section -> Test each EP as well as some common e2e scenarios. 
