@@ -1,0 +1,97 @@
+# Project README
+
+## Project Overview
+This project provides a Flask-based API for managing lease data and generating analytics.
+The project includes GET/POST EPs for Lease, Property, Unit, Tenant as the basics, as well as endpoints for retrieving leases ending soon and analyzing the top five units with the longest vacancy periods in the last year as required.
+
+## Features
+- Manage lease data with a RESTful API.
+- GET/POST EPs for retrieve/create data
+- Includes endpoints:
+  - `/leases/ending-soon?days=30`: Retrieve leases ending within a specified number of days.
+  - `/analytics/top-vacancies`: Identify the top five units with the longest vacancy periods in the past year.
+
+## How to Start the Project
+
+### Prerequisites
+1. Install Python 3.9 or higher.
+2. Install `pip` for dependency management.
+
+### Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Start the Flask server:
+   ```bash
+   python app.py
+   ```
+4. The API will be available at `http://127.0.0.1:5000`.
+
+## Input/Output Examples
+
+### Endpoint: `/analytics/top-vacancies`
+**Description**: Returns the top five units with the longest vacancy periods over the last year, including property name and address.
+
+#### Input
+No parameters required.
+
+#### Output
+```json
+[
+    {
+        "unit_id": 101,
+        "longest_vacancy_days": 120,
+        "property_name": "Sunset Apartments",
+        "property_address": "123 Sunset Blvd, Los Angeles, CA"
+    },
+    {
+        "unit_id": 205,
+        "longest_vacancy_days": 90,
+        "property_name": "Ocean View Villas",
+        "property_address": "456 Ocean Drive, Miami, FL"
+    }
+]
+```
+
+### Endpoint: `/leases/ending-soon`
+**Description**: Retrieves leases ending within a specified number of days.
+
+#### Input
+- Query Parameter: `days` (optional, default: 30)
+
+#### Example Request
+`GET /leases/ending-soon?days=15`
+
+#### Output
+```json
+[
+    {
+        "lease_id": 5,
+        "unit_id": 102,
+        "tenant_id": 301,
+        "start_date": "2023-01-15",
+        "end_date": "2024-01-10"
+    },
+    {
+        "lease_id": 8,
+        "unit_id": 205,
+        "tenant_id": 305,
+        "start_date": "2023-07-01",
+        "end_date": "2024-01-12"
+    }
+]
+```
+
+## Future Improvements
+
+- Adding Pydantic restriction on Input/Output for all EPs.
+- Add error handling support for identifying possible http errors.
+- Understand if we will use structized schema data (as we do now) or do we expect more randomized data (as real businesses have) and if so transition to the non-relational db such as Mongo for example.
+- Adding PUT/DELETE options for the various EPs.
+
